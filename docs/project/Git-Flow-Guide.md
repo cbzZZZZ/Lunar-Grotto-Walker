@@ -2,24 +2,31 @@
 
 ## 1. 项目概述
 
-本项目为月球熔岩洞机器人智能自主采样任务，采用 Git Flow 模型结合 GitHub Projects (Beta) 进行项目管理，适用于 4-10 人团队的 C/C++（嵌入式）+ Python（AI）混合技术栈项目。
+本项目为月球熔岩洞机器人智能自主采样任务，采用 Git Flow 模型结合 GitHub Projects (V2) 进行项目管理，适用于 4-10 人团队的 C/C++（嵌入式）+ Python（AI）混合技术栈项目。
 
 ### 技术栈
 
 - **代码托管**: GitHub
-- **项目管理**: GitHub Projects (Beta) - Sprint 看板
+- **项目管理**: GitHub Projects (V2) - Sprint 看板
 - **CI/CD**: GitHub Actions
 - **嵌入式**: C/C++（编译检查、静态分析、单元测试）
 - **AI/仿真**: Python（代码格式、lint、单元测试）
 
 ### 分支结构概览
 
-```
-feature/123-xxx  ─┐
-feature/124-yyy  ─┤
-                  ├──> develop ──────────────> main
-                  │                              ↑
-hotfix/x.x.x     ─┴──────────────────────────────┘
+```mermaid
+gitGraph
+   commit id: "feature/123"
+   commit id: "feature/124"
+   checkout develop
+   merge feature/123
+   merge feature/124
+   checkout main
+   merge develop tag: "v1.0.0"
+   checkout develop
+   commit id: "hotfix"
+   checkout main
+   merge hotfix tag: "v1.0.1"
 ```
 
 ---
@@ -42,8 +49,8 @@ feature/124-gait-control
 feature/125-sensor-fusion
 
 # 热修复分支
-hotfix/1.0.1-critical-fix
-hotfix/1.0.2-sensor-overflow
+hotfix/1.0.1
+hotfix/1.0.2
 ```
 
 ---
@@ -179,7 +186,7 @@ v1.1.0-hotfix          # 紧急修复版本
 1. 从 main 创建热修复分支：
    git checkout main
    git pull
-   git checkout -b hotfix/1.0.1-critical-fix
+   git checkout -b hotfix/1.0.1
 
 2. 修复 Bug 并提交（使用 "fix:" 前缀）：
    git commit -m "fix: 修复传感器数据溢出问题"
@@ -395,7 +402,7 @@ To Do ──────> In Progress ──────> In Review ────
 第 1 周：git checkout develop
 第 2 周：git merge feature/gait-algorithm
 第 3 周：git merge feature/sensor-fusion
-第 4 周（赛前）：git checkout main && git merge develop --no-ff
+第 4 周（赛前）：git checkout main && git merge origin/develop --no-ff
                git tag -a v1.0.0-competition
                git push --tags
 比赛当天：直接使用 main 分支代码或现场 hotfix
