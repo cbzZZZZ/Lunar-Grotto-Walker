@@ -3,7 +3,7 @@ name: Feature Request
 about: 提出新功能建议
 title: "[Feature] "
 labels: feature
-assignees: ''
+assignees: []
 ---
 
 ## 功能描述

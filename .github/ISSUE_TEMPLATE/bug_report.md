@@ -3,16 +3,16 @@ name: Bug Report
 about: 报告 Bug
 title: "[Bug] "
 labels: bug
-assignees: ''
+assignees: []
 ---
 
 ## 问题描述
 [描述问题]
 
 ## 复现步骤
-1.
-2.
-3.
+1. 
+2. 
+3. 
 
 ## 预期行为
 [描述预期结果]

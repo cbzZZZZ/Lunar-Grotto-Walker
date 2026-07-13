@@ -3,7 +3,7 @@ name: Documentation
 about: 文档更新
 title: "[Docs] "
 labels: documentation
-assignees: ''
+assignees: []
 ---
 
 ## 文档位置
