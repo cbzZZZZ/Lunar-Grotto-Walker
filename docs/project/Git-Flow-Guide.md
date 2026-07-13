@@ -162,14 +162,14 @@ v1.1.0-hotfix          # 紧急修复版本
 ```
 1. 准备发布（由 Release Manager 执行）：
    git checkout develop
-   git pull
+   git pull origin develop
    # 确保所有功能分支已合并
 
 2. 集成测试：在测试环境进行完整测试
 
 3. 测试通过后合并到 main：
    git checkout main
-   git merge develop --no-ff -m "Merge develop into main for v1.0.0"
+   git merge origin/develop --no-ff -m "Merge develop into main for v1.0.0"
 
 4. 打标签：
    git tag -a v1.0.0-competition -m "比赛版本 v1.0.0"
@@ -414,7 +414,7 @@ To Do ──────> In Progress ──────> In Review ────
 
 | 操作 | 命令 |
 |-----|------|
-| 更新 develop | `git checkout develop && git pull` |
+| 更新 develop | `git checkout develop && git pull origin develop` |
 | 创建功能分支 | `git checkout -b feature/123-xxx` |
 | 推送功能分支 | `git push -u origin feature/123-xxx` |
 | 查看分支差异 | `git log --oneline develop..HEAD` |
