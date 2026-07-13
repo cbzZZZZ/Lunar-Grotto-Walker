@@ -1,0 +1,36 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [**]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc g++ clang-tidy googletest libgtest-dev
+
+      - name: Build
+        run: |
+          mkdir -p build
+          cd build
+          cmake ..
+          make
+
+      - name: Run static analysis
+        run: |
+          find . -name "*.cpp" -o -name "*.h" | xargs clang-tidy
+
+      - name: Run unit tests
+        run: |
+          cd build
+          ./tests/run_tests
